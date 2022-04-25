@@ -2,7 +2,7 @@ import React from "react";
 import categoryData from "../fake-data/all-categories";
 import "../App.css";
 
-function categories({ selectCategory, selectedCategory }) {
+function Categories({ selectCategory, selectedCategory }) {
   return (
     <div className="category-container">
       {categoryData.map((category, index) => {
@@ -22,4 +22,4 @@ function categories({ selectCategory, selectedCategory }) {
   );
 }
 
-export default categories;
+export default Categories;

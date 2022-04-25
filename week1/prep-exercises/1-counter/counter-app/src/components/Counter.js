@@ -6,8 +6,17 @@ import Button from "./Button";
 function Counter() {
   const [count, setCount] = useState(0);
   const feedback = count > 10 ? "It's higher than 10!" : "Keep counting...";
-  const increaseOne = () => setCount(count + 1);
-  const decreaseOne = () => (count > 0 ? setCount(count - 1) : 0);
+  
+  const increaseOne = () => {
+    if (count > 0) {
+      setCount(count + 1);
+    }
+  };
+  const decreaseOne = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
   return (
     <div className="counter">
       <h1>{feedback}</h1>
