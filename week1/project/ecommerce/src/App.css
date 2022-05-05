@@ -12,14 +12,15 @@
 	margin: 5px;
 }
 
-.category-container h3 {
+.category-container button {
   padding: 0.5rem;
   color: #0e0c0c;
   background-color: #efeff0;
   cursor: pointer;
+  border-radius: 5px;
 }
 
-.category-container h3:hover {
+.category-container button:hover {
   background-color: #d6d6d8;
 }
 
