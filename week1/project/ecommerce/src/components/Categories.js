@@ -2,20 +2,20 @@ import React from "react";
 import categoryData from "../fake-data/all-categories";
 import "../App.css";
 
-function Categories({ selectCategory, selectedCategory }) {
+function Categories({ onSelectCategory, selectedCategory }) {
   return (
     <div className="category-container">
       {categoryData.map((category, index) => {
         return (
-          <h3
+          <button
             className={selectedCategory === category && "title-active"}
             key={index}
-            onClick={(e) => {
-              selectCategory(e.currentTarget.innerText);
+            onClick={() => {
+              onSelectCategory(category);
             }}
           >
             {category}
-          </h3>
+          </button>
         );
       })}
     </div>

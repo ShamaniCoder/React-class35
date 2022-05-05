@@ -1,15 +1,25 @@
-import React from "react";
+import { useState } from "react";
 import ProductCard from "./ProductCard";
+import productsData from "../fake-data/all-products";
+
 import "../App.css";
 
+function Products({ selectedCategory }) {
+  let products;
 
-function Products({ filteredProducts }) {
+  if (selectedCategory === "") {
+    products = productsData;
+  } else {
+    products = productsData.filter(
+      (product) => product.category === selectedCategory.slice(6)
+    );
+  }
   return (
     <div className="products">
-      {filteredProducts.map((product, index) => {
+      {products.map((product) => {
         return (
           <ProductCard
-            key={index}
+            key={product.id}
             image={product.image}
             title={product.title}
           />
