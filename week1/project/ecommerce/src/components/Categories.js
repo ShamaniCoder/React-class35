@@ -11,7 +11,11 @@ function Categories({ onSelectCategory, selectedCategory }) {
             className={selectedCategory === category && "title-active"}
             key={index}
             onClick={() => {
-              onSelectCategory(category);
+              if (selectedCategory === category) {
+                onSelectCategory("");
+              } else {
+                onSelectCategory(category);
+              }
             }}
           >
             {category}
