@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import "../App.css";
+import MoonLoader from "react-spinners/MoonLoader";
+import { css } from "@emotion/react";
 
 const Products = ({ selectedCategory }) => {
   const URL = selectedCategory
@@ -30,7 +32,7 @@ const Products = ({ selectedCategory }) => {
   return (
     <div>
       {isLoading ? (
-        <p>Loading</p>
+        <MoonLoader css={override} size={100} />
       ) : errMessage ? (
         <h3>{errMessage}</h3>
       ) : (
@@ -52,3 +54,9 @@ const Products = ({ selectedCategory }) => {
 };
 
 export default Products;
+
+export const override = css`
+	display: block;
+	margin: 0 auto;
+	margin-top: 10rem;
+`;
