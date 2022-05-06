@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-const Category = ({ selectedCategory, setSelectedCategory }) => {
+function Category ({ onCategorySelect, selectedCategory }) {
   const Url = "https://fakestoreapi.com/products/categories";
   const [categories, setCategories] = useState([]);
 
@@ -19,10 +19,7 @@ const Category = ({ selectedCategory, setSelectedCategory }) => {
     getCategories();
   }, []);
 
-  const handleCategory = (e) => {
-    setSelectedCategory(e.currentTarget.innerText);
-  };
-
+  
   return (
     <div className="category-container">
       {categories?.map((category, index) => {
@@ -30,7 +27,13 @@ const Category = ({ selectedCategory, setSelectedCategory }) => {
           <h3
             className={selectedCategory === category ? "title-active" : null}
             key={index}
-            onClick={handleCategory}
+            onClick={() => {
+              if (selectedCategory === category) {
+                onCategorySelect("");
+              } else {
+                onCategorySelect(category);
+              };
+            }}
           >
             {category}
           </h3>

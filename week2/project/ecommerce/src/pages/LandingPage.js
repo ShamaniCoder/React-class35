@@ -5,14 +5,14 @@ import Products from "../components/Products";
 // import { useState } from "react";
 
 const LandingPage = () => {
-    const [selectedCategory, setSelectedCategory] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("");
   return (
     <div className="App">
       <h1>Products</h1>
-      <Category  
-        setSelectedCategory={setSelectedCategory}
+      <Category
+        onCategorySelect={setSelectedCategory}
         selectedCategory={selectedCategory}
-        />
+      />
       <Products selectedCategory={selectedCategory} />
     </div>
   );

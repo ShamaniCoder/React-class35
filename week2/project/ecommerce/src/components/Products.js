@@ -8,8 +8,10 @@ const Products = ({ selectedCategory }) => {
     : "https://fakestoreapi.com/products/";
 
   const [products, setProducts] = useState([]);
-  
+
   const [isLoading, setIsLoading] = useState("false");
+
+  const [errMessage, setErrMessage] = useState("");
 
   const getProducts = async () => {
     try {
@@ -17,10 +19,9 @@ const Products = ({ selectedCategory }) => {
       let response = await fetch(URL);
       let products = await response.json();
       setProducts(products);
-    } catch (err) {
-      console.log(err);
-    } finally {
       setIsLoading(false);
+    } catch (err) {
+      setErrMessage(err.message);
     }
   };
   useEffect(() => {
@@ -28,19 +29,24 @@ const Products = ({ selectedCategory }) => {
   }, [URL]);
   return (
     <div>
-      {isLoading && <p>Loading</p>}
-      <div className="products">
-        {products.map((product) => {
-          return (
-            <ProductCard
-              key={product.id}
-              image={product.image}
-              title={product.title}
-              id={product.id}
-            />
-          );
-        })}
-      </div>
+      {isLoading ? (
+        <p>Loading</p>
+      ) : errMessage ? (
+        <h3>{errMessage}</h3>
+      ) : (
+        <div className="products">
+          {products.map((product) => {
+            return (
+              <ProductCard
+                key={product.id}
+                image={product.image}
+                title={product.title}
+                id={product.id}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
