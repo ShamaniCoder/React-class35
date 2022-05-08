@@ -28,7 +28,7 @@ const Products = ({ selectedCategory }) => {
   };
   useEffect(() => {
     getProducts();
-  }, [URL]);
+  }, [url]);
   return (
     <div>
       {isLoading ? (
@@ -37,7 +37,7 @@ const Products = ({ selectedCategory }) => {
         <h3>{errMessage}</h3>
       ) : (
         <div className="products">
-          {products.map((product) => {
+          {products?.map((product) => {
             return (
               <ProductCard
                 key={product.id}

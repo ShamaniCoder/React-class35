@@ -29,12 +29,12 @@ const ProductDetailsPage = () => {
       ) : (
         <div>
           <div>
-            <h1>{product.title}</h1>
+            <h1>{product?.title}</h1>
           </div>
           <div className="product-detail">
-            <p style={{ flex: 3 }}>{product.description}</p>
+            <p style={{ flex: 3 }}>{product?.description}</p>
             <div style={{ flex: 2 }}>
-              <img id="img" src={product.image} alt={product.title} />
+              <img id="img" src={product?.image} alt={product?.title} />
             </div>
           </div>
         </div>
