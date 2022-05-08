@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 function Category ({ onCategorySelect, selectedCategory }) {
-  const Url = "https://fakestoreapi.com/products/categories";
+  const url = "https://fakestoreapi.com/products/categories";
   const [categories, setCategories] = useState([]);
 
   const getCategories = async () => {
     try {
-      let response = await fetch(Url);
+      let response = await fetch(url);
       let categories = await response.json();
       setCategories(categories);
     

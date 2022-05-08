@@ -5,20 +5,20 @@ import MoonLoader from "react-spinners/MoonLoader";
 import { css } from "@emotion/react";
 
 const Products = ({ selectedCategory }) => {
-  const URL = selectedCategory
+  const url = selectedCategory
     ? `https://fakestoreapi.com/products/category/${selectedCategory}`
     : "https://fakestoreapi.com/products/";
 
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState();
 
-  const [isLoading, setIsLoading] = useState("false");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [errMessage, setErrMessage] = useState("");
 
   const getProducts = async () => {
     try {
       setIsLoading(true);
-      let response = await fetch(URL);
+      let response = await fetch(url);
       let products = await response.json();
       setProducts(products);
       setIsLoading(false);

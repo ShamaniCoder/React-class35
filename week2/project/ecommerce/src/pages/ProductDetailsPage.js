@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../App.css";
+import MoonLoader from "react-spinners/MoonLoader";
+import { css } from "@emotion/react";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
-  const URL = `https://fakestoreapi.com/products/${id}`;
-  const [product, setProduct] = useState({});
+  const url = `https://fakestoreapi.com/products/${id}`;
+  const [product, setProduct] = useState();
   const [errMessage, setErrMessage] = useState("");
 
   const getDetails = async () => {
     try {
-      let response = await fetch(URL);
+      let response = await fetch(url);
       let detail = await response.json();
       setProduct(detail);
     } catch (err) {
