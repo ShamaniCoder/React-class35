@@ -1,10 +1,12 @@
+import ProductsProvider from "./context/ProductsContext";
 import Router from "./router/Router";
-
 
 function App() {
   return (
     <div>
-      <Router/>
+      <ProductsProvider>
+        <Router />
+      </ProductsProvider>
     </div>
   );
 }

@@ -1,34 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import "../App.css";
+import MoonLoader from "react-spinners/MoonLoader";
+import { css } from "@emotion/react";
+import useFetch from "../hooks/UseFetch";
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
-  const URL = `https://fakestoreapi.com/products/${id}`;
-  const [product, setProduct] = useState({});
-  const [errMessage, setErrMessage] = useState("");
+  const url = `https://fakestoreapi.com/products/${id}`;
+  const { data: product, isLoading, errMessage } = useFetch(url);
 
-  const getDetails = async () => {
-    try {
-      let response = await fetch(URL);
-      let detail = await response.json();
-      setProduct(detail);
-    } catch (err) {
-      setErrMessage(err.message);
-    }
-  };
-  useEffect(() => {
-    getDetails();
-  });
   return (
     <div>
-      {errMessage ? (
+      {isLoading ? (
+        <MoonLoader css={override} size={100} />
+      ) : errMessage ? (
         <h3>{errMessage}</h3>
       ) : (
         <>
-          <div>
+          <div id="top-bar">
             <h1>{product.title}</h1>
+            <div>
+              <Link to="/">Products</Link>
+              <Link to="/favorites">Favorites</Link>
+            </div>
           </div>
+
           <div className="product-detail">
             <p style={{ flex: 3 }}>{product.description}</p>
             <div style={{ flex: 2 }}>
@@ -43,4 +41,8 @@ const ProductDetailsPage = () => {
 
 export default ProductDetailsPage;
 
-//
+export const override = css`
+  display: block;
+  margin: 0 auto;
+  margin-top: 10rem;
+`;

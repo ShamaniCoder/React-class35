@@ -1,22 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import useFetch from "../hooks/UseFetch"
 
-const Category = ({ onCategorySelect, selectedCategory }) => {
-  const Url = "https://fakestoreapi.com/products/categories";
-  const [categories, setCategories] = useState([]);
+function Category ({ onCategorySelect, selectedCategory }) {
+  const url = "https://fakestoreapi.com/products/categories";
+  const { data: categories } = useFetch(url);
 
-  const getCategories = async () => {
-    try {
-      let response = await fetch(Url);
-      let categories = await response.json();
-      setCategories(categories);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    getCategories();
-  }, []);
 
   return (
     <div className="category-container">
@@ -30,7 +18,7 @@ const Category = ({ onCategorySelect, selectedCategory }) => {
                 onCategorySelect("");
               } else {
                 onCategorySelect(category);
-              }
+              };
             }}
           >
             {category}

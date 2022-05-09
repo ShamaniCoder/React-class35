@@ -2,16 +2,23 @@ import "../App.css";
 import React, { useState } from "react";
 import Category from "../components/Category";
 import Products from "../components/Products";
-// import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
-    const [selectedCategory, setSelectedCategory] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("");
   return (
     <div className="App">
-      <h1>Products</h1>
-      <Category  
-        onCategorySelect={setSelectedCategory} selectedCategory={selectedCategory}
-        />
+      <div id="top-bar">
+        <h1>Products</h1>
+        <div>
+          <Link to="/">Products</Link>
+          <Link to="/favorites">Favorites</Link>
+        </div>
+      </div>
+      <Category
+        onCategorySelect={setSelectedCategory}
+        selectedCategory={selectedCategory}
+      />
       <Products selectedCategory={selectedCategory} />
     </div>
   );
