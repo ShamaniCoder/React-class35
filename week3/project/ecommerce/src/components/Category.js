@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import useFetch from "../hooks/UseFetch"
 
 function Category ({ onCategorySelect, selectedCategory }) {
